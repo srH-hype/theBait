@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/underwater theme 2nd variation (my preferred).ogg-9aa8337acd58c4b0ade8a7be9bbefee3.oggstr"
+
+[deps]
+
+source_file="res://Assets/underwater theme 2nd variation (my preferred).ogg"
+dest_files=[ "res://.import/underwater theme 2nd variation (my preferred).ogg-9aa8337acd58c4b0ade8a7be9bbefee3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

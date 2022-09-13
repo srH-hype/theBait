@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://objects/bait.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/underwater theme 2nd variation (my preferred).ogg" type="AudioStream" id=2]
+[ext_resource path="res://objects/wave.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Game.gd" type="Script" id=4]
+[ext_resource path="res://Assets/VioletSans-Regular.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 362, 28.25 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 79.5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 49
+font_data = ExtResource( 5 )
+
+[node name="Node2D" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wavePoint3" type="Position2D" parent="."]
+position = Vector2( 245, 650 )
+scale = Vector2( 2, 2 )
+
+[node name="endPoint" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="endPoint"]
+position = Vector2( 255, -165 )
+shape = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0431373, 0.309804, 0.647059, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wallL" type="KinematicBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallL"]
+position = Vector2( -2, 81 )
+shape = SubResource( 1 )
+
+[node name="wallR" type="KinematicBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallR"]
+position = Vector2( 493, 82 )
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -14.0
+autoplay = true
+
+[node name="wave1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 247, 43 )
+
+[node name="wave2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 245, 161 )
+
+[node name="wave3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 245, 284 )
+
+[node name="wave4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 247, 392 )
+
+[node name="wave5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 245, 492 )
+
+[node name="wave6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 245, 587 )
+
+[node name="wave8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 253, -71 )
+
+[node name="bait" parent="." instance=ExtResource( 1 )]
+position = Vector2( 243, 40 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -54.0
+margin_top = -113.0
+margin_right = 54.0
+margin_bottom = -63.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fishPoint1" type="Position2D" parent="."]
+position = Vector2( 70, 730 )
+scale = Vector2( 2, 2 )
+
+[node name="fishPoint2" type="Position2D" parent="."]
+position = Vector2( 420, 730 )
+scale = Vector2( 2, 2 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="timerFish" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="endPoint" to="." method="_on_endPoint_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="timerFish" to="." method="_on_timerFish_timeout"]
